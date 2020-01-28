@@ -1,6 +1,9 @@
 /* 
+  The following is a google Software Engineer Question:
   Given an array of integers, find the most frequent integer.
-  Write a method that takes an array of integers and returns an integer
+  Write a method that takes an array of integers and returns an integer.
+
+  This is my solution
 */
 
 const mostFrequentInt = (arr) => {
