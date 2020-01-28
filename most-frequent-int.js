@@ -1,19 +1,33 @@
 /* 
   The following is a google Software Engineer Question:
+
+  Part 1:
   Given an array of integers, find the most frequent integer.
   Write a method that takes an array of integers and returns an integer.
+
+  {1, 2, 3, 3} => 3
+  {1, 2, 3} => 1 or 2 or 3
+  {3, 1, 4, 57, 4} => 4
 
   This is my solution
 */
 
 const mostFrequentInt = (arr) => {
   if (!(arr instanceof Array)) return;
+  
+  console.log("For array:", arr);
+  const intCountDict = getIntCountDict(arr);
 
-  // I guess, I'll create a dictionary to keep try of each integers then increment the value the number of times it exists
+  const maxItem = getMaxItem(intCountDict);
+  
+  console.log("Dictionary:", intCountDict);
+  console.log("Max prop: ", maxItem);
+  return maxItem;
+}
+
+const getIntCountDict = (arr) => {
   const intCountDict = {};
 
-
-  console.log("For array:", arr);
   arr.forEach((item) => {
     if (intCountDict.hasOwnProperty(item)) {
       intCountDict[item]++;
@@ -22,18 +36,18 @@ const mostFrequentInt = (arr) => {
     }
   });
 
-  let maxInt = 0;
+  return intCountDict;
+} 
+
+const getMaxItem = (dict) => {
+  let maxInt = Number.MIN_SAFE_INTEGER;
   let maxItem = {};
-  for (let item in intCountDict) {
-    if (intCountDict[item] > maxInt) {
+  for (let item in dict) {
+    if (dict[item] > maxInt) {
       maxItem = item;
-      maxInt = intCountDict[item];
+      maxInt = dict[item];
     }
   }
-
-  
-  console.log("Dictionary:", intCountDict);
-  console.log("Max prop: ", maxItem);
   return maxItem;
 }
 
@@ -46,3 +60,18 @@ console.log(mostFrequentInt(arr4));
 console.log(mostFrequentInt(arr1));
 console.log(mostFrequentInt(arr2));
 console.log(mostFrequentInt(arr3));
+
+
+/**
+ * Part 2:
+ * 
+ * Given an array of non-negative integers and a positive integer n,
+ * print out all the pairs of integers whose sum is n.
+ * 
+ * {1, 2, 9, 12}, 10 => 1 9
+ * {1, 9, 1, 9}, 10 => 1 9 \n 1 9
+ * {1, 9, 1}, 10 => 1 9
+ * 
+ * My solution:
+ * 
+ */
